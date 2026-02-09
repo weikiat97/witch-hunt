@@ -6,66 +6,37 @@
     <title>WITCH-HUNT | APRILLIA</title>
     <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Metal+Mania&family=Pirata+One&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --blood-red: #8B0000;
-            --gothic-gold: #c5a059;
-            --deep-black: #050505;
-        }
+        :root { --blood-red: #8B0000; --gothic-gold: #c5a059; }
+        body { margin: 0; background: #000; color: #ddd; font-family: 'Metal Mania', cursive; overflow-x: hidden; background-image: radial-gradient(circle at center, #1a0800 0%, #000 90%); }
+        
+        #splash { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #000; display: flex; align-items: center; justify-content: center; z-index: 100; transition: opacity 1s; }
+        #enter-btn { background: none; border: 2px solid var(--gothic-gold); color: var(--gothic-gold); padding: 20px 50px; font-size: 2rem; cursor: pointer; font-family: 'Pirata One', cursive; }
+        
+        header { text-align: center; padding: 60px 20px; }
+        h1 { font-family: 'Creepster', cursive; font-size: clamp(3rem, 10vw, 7rem); color: var(--blood-red); margin: 0; }
+        .sub-text { color: var(--gothic-gold); font-size: 2rem; letter-spacing: 5px; }
 
-        body {
-            margin: 0;
-            background: #000;
-            color: #ddd;
-            font-family: 'Metal Mania', cursive;
-            overflow-x: hidden;
-            background-image: radial-gradient(circle at center, #1a0800 0%, #000 90%);
-        }
+        .section-header { text-align: center; font-size: 2.5rem; color: var(--gothic-gold); margin: 60px 0 30px; text-transform: uppercase; }
 
-        /* Splash Screen */
-        #splash {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: #000; display: flex; align-items: center; justify-content: center; z-index: 100;
-            transition: opacity 1.5s ease-in-out;
-        }
-        #enter-btn {
-            background: none; border: 2px solid var(--gothic-gold); color: var(--gothic-gold);
-            padding: 20px 50px; font-size: 2rem; cursor: pointer; letter-spacing: 5px;
-            font-family: 'Pirata One', cursive; transition: 0.5s;
-        }
-        #enter-btn:hover { color: #fff; background: var(--gothic-gold); box-shadow: 0 0 40px var(--gothic-gold); }
+        .spotify-box { display: flex; justify-content: center; padding: 20px; }
+        .spotify-container { width: 100%; max-width: 700px; border-radius: 12px; overflow: hidden; border: 1px solid var(--gothic-gold); }
 
-        header { text-align: center; padding: 100px 20px; }
-        h1 { 
-            font-family: 'Creepster', cursive; font-size: clamp(4rem, 12vw, 8rem); 
-            color: var(--blood-red); margin: 0; letter-spacing: 15px;
-            text-shadow: 2px 2px 10px #000;
-        }
-        .sub-text { color: var(--gothic-gold); font-size: 2.5rem; letter-spacing: 8px; opacity: 0.9; }
+        .content-box { max-width: 800px; margin: 0 auto; padding: 20px; text-align: center; line-height: 1.6; }
+        .lyrics { white-space: pre-line; background: rgba(20, 0, 0, 0.4); border: 1px solid var(--blood-red); padding: 30px; border-radius: 15px; color: var(--gothic-gold); }
 
-        /* Section Titles in Gothic Gold */
-        .section-header { 
-            text-align: center; font-size: 3rem; color: var(--gothic-gold); 
-            margin: 80px 0 40px; letter-spacing: 4px; text-transform: uppercase;
-            text-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
-        }
+        /* The Button-Controlled Carousel */
+        .carousel-outer { position: relative; max-width: 400px; margin: 0 auto; padding: 0 50px; }
+        .carousel-window { width: 100%; overflow: hidden; border: 1px solid #333; box-shadow: 0 0 20px #000; }
+        .carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
+        .carousel-item { min-width: 100%; height: 650px; display: flex; align-items: center; justify-content: center; background: #000; }
+        
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: 1px solid var(--gothic-gold); color: var(--gothic-gold); font-size: 2rem; padding: 10px; cursor: pointer; transition: 0.3s; z-index: 5; }
+        .nav-btn:hover { background: var(--gothic-gold); color: #000; }
+        .prev { left: 0; }
+        .next { right: 0; }
 
-        /* Spotify Widget */
-        .widget-box { display: flex; justify-content: center; padding: 0 20px; }
-        .spotify-container { width: 100%; max-width: 800px; }
-
-        /* Video Showcase */
-        .video-list { display: flex; flex-direction: column; align-items: center; gap: 50px; padding-bottom: 50px; }
-        .vid { width: 90%; max-width: 900px; aspect-ratio: 16/9; border: 1px solid #222; box-shadow: 0 0 30px #000; }
-
-        /* Vertical Carousel for Shorts/Reels */
-        .carousel-track { display: flex; overflow-x: auto; gap: 25px; padding: 20px 50px; scroll-snap-type: x mandatory; }
-        .carousel-track::-webkit-scrollbar { height: 4px; }
-        .carousel-track::-webkit-scrollbar-thumb { background: var(--gothic-gold); }
-        .short-item { min-width: 320px; height: 570px; scroll-snap-align: center; border: 1px solid #1a1a1a; }
-
-        footer { text-align: center; padding: 80px 20px; background: var(--deep-black); border-top: 1px solid #1a1100; }
-        .links a { color: var(--gothic-gold); text-decoration: none; margin: 0 20px; font-size: 1.5rem; transition: 0.3s; }
-        .links a:hover { color: #fff; text-shadow: 0 0 10px var(--gothic-gold); }
+        footer { text-align: center; padding: 50px; background: #050505; border-top: 1px solid #1a1100; }
+        .links a { color: var(--gothic-gold); text-decoration: none; margin: 0 15px; font-size: 1.2rem; }
     </style>
 </head>
 <body>
@@ -74,70 +45,54 @@
         <button id="enter-btn" onclick="ignite()">BEGIN THE RITUAL</button>
     </div>
 
-    <audio id="witch-audio" loop>
-        <source src="WITCH-HUNT.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="witch-audio" loop><source src="WITCH-HUNT.mp3" type="audio/mpeg"></audio>
 
     <header>
         <h1>WITCH-HUNT</h1>
         <div class="sub-text">APRILLIA</div>
     </header>
 
-    <div class="section-header">LISTEN</div>
-    <div class="widget-box">
-        <div class="spotify-container">
-            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/album/1RMwGUfSPopPmJ4VZYE95s?si=hVCOeUBwT3GjWxJA-5JzdA" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
+    <div class="section-header">THE ORACLE</div>
+    <div class="content-box">
+        <p>APRILLIA is a singer, songwriter, and rapper. In "WITCH-HUNT," she tracks the wolves in sheep's clothing—the fake bitches who weave webs of lies. She is the reckoning.</p>
     </div>
 
-    <div class="section-header">THE ORACLE</div>
-    <div style="max-width: 800px; margin: 0 auto; padding: 0 20px; text-align: center; line-height: 1.8;">
-        <p style="font-size: 1.4rem; color: #bbb; font-style: italic;">
-            APRILLIA is more than a voice; she is a reckoning. A singer, songwriter, and rapper emerging from the shadows to cast a light on the hidden rot of the modern world.
-        </p>
-        <p style="font-size: 1.6rem; color: var(--gothic-gold); margin-top: 20px;">
-            In the world of "WITCH-HUNT," the monsters aren't under the bed—they are the "fake bitches" masquerading as friends. 
-            Armed with sharp flows and a darker vision, APRILLIA tracks the wolves in sheep's clothing, ensuring that those who weave webs of lies eventually burn in them.
-        </p>
+    <div class="section-header">STREAM</div>
+    <div class="spotify-box">
+        <div class="spotify-container">
+            <iframe src="https://open.spotify.com/embed/track/70GfdOlDyIvbc4BbYFlrB0" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
     </div>
 
     <div class="section-header">THE INCANTATION</div>
-    <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px; background: rgba(20, 0, 0, 0.6); border: 1px inset var(--blood-red); border-radius: 20px; text-align: center; white-space: pre-line; color: var(--gothic-gold); letter-spacing: 2px; font-size: 1.2rem;">
-        [Verse 1]
-        Girl what you trying to do
-        All the boys want to get with you
-        And all the girls afraid of you
-        But bitch I see through you
-
-        Can't wait till they see how you look before
-        If they do they run straight out the door
-        All the boys that you done done before
-        You back calling you...
-
-        [Chorus]
-        Singaporean love, passing on a love spell
-        I don't want no reason, farewell
-        Hope you burn in hell
-        Why don't you try me baby?
-
-        [Outro]
-        I ain't playing, i'm just saying
-        Dropping that grab, head scratching that edge
-        Jokes on you bitch, you're singing so average
-    </div>
-    
-    <div class="section-header">THE VISIONS</div>
-    <div class="video-list">
-        <iframe class="vid" src="https://www.youtube.com/embed/TFcxtEIKStU" allowfullscreen></iframe>
-        <iframe class="vid" src="https://www.youtube.com/embed/xM46WkDhAps" allowfullscreen></iframe>
+    <div class="content-box">
+        <div class="lyrics">
+            [Chorus]
+            Singaporean love, passing on a love spell
+            I don't want no reason, farewell
+            Hope you burn in hell
+            Why don't you try me baby?
+        </div>
     </div>
 
     <div class="section-header">THE POSSESSION</div>
-    <div class="carousel-track">
-        <div class="short-item">
-            <iframe width="100%" height="100%" src="https://www.instagram.com/reel/DUOGuKcEnAv/embed/" frameborder="0"></iframe>
+    <div class="carousel-outer">
+        <button class="nav-btn prev" onclick="moveSlide(-1)">❮</button>
+        <div class="carousel-window">
+            <div class="carousel-track" id="track">
+                <div class="carousel-item">
+                    <iframe width="100%" height="100%" src="https://www.instagram.com/reel/DUOGuKcEnAv/embed/" frameborder="0"></iframe>
+                </div>
+                <div class="carousel-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/TFcxtEIKStU" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="carousel-item">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/xM46WkDhAps" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
         </div>
-        </div>
+        <button class="nav-btn next" onclick="moveSlide(1)">❯</button>
+    </div>
 
     <footer>
         <div class="links">
@@ -148,10 +103,18 @@
     </footer>
 
     <script>
+        let index = 0;
+        function moveSlide(step) {
+            const track = document.getElementById('track');
+            const slides = document.querySelectorAll('.carousel-item');
+            index = (index + step + slides.length) % slides.length;
+            track.style.transform = `translateX(-${index * 100}%)`;
+        }
+
         function ignite() {
             document.getElementById('witch-audio').play();
             document.getElementById('splash').style.opacity = '0';
-            setTimeout(() => { document.getElementById('splash').style.display = 'none'; }, 1500);
+            setTimeout(() => { document.getElementById('splash').style.display = 'none'; }, 1000);
         }
     </script>
 </body>
