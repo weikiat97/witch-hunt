@@ -48,6 +48,10 @@
         <button id="enter-btn" onclick="ignite()">BEGIN THE RITUAL</button>
     </div>
 
+    <audio id="witch-audio" loop>
+        <source src="WITCH-HUNT.mp3" type="audio/mpeg">
+    </audio>
+    
     <header>
         <h1>WITCH-HUNT</h1>
         <div class="sub-text">APRILLIA</div>
@@ -137,6 +141,18 @@
                 setTimeout(() => { document.getElementById('spotify-widget').style.transform = 'scale(1)'; }, 500);
             }, 1000);
         }
+
+        // This detects when the user interacts with the Spotify Iframe
+        window.focus(); // Ensure the main window has focus first
+        window.addEventListener('blur', function() {
+        const witchAudio = document.getElementById('witch-audio');
+        
+        // If the user clicks into the Spotify player, pause the background MP3
+        if (document.activeElement.tagName === 'IFRAME') {
+            witchAudio.pause();
+            console.log("Ritual paused. Official stream initiated.");
+        }
+    });
     </script>
 </body>
 </html>
