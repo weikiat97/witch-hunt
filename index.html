@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WITCH-HUNT | APRILLIA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Pirata+One&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blood-red: #8B0000;
+            --gothic-gold: #c5a059;
+        }
+
+        body {
+            margin: 0;
+            background: #000;
+            color: #ddd;
+            font-family: 'UnifrakturMaguntia', serif;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle, #1a0000 0%, #000 80%);
+        }
+
+        /* The Ritual Entrance */
+        #splash {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: #000; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; z-index: 100;
+            transition: opacity 1.5s ease;
+        }
+        #enter-btn {
+            background: none; border: 2px solid var(--blood-red); color: var(--blood-red);
+            padding: 20px 50px; font-size: 2rem; cursor: pointer; letter-spacing: 8px;
+            font-family: 'Pirata One', cursive; transition: 0.5s;
+        }
+        #enter-btn:hover {
+            color: #fff; background: var(--blood-red); box-shadow: 0 0 40px var(--blood-red);
+        }
+
+        /* Header & Titles */
+        header { text-align: center; padding: 120px 20px; }
+        h1 { 
+            font-family: 'Creepster', cursive; font-size: 8rem; color: var(--blood-red); 
+            margin: 0; letter-spacing: 15px; text-shadow: 0 0 20px #000, 0 0 10px #ff000055;
+        }
+        .artist-name { font-family: 'Pirata One', cursive; font-size: 2.5rem; letter-spacing: 5px; opacity: 0.8; }
+
+        /* Video Showcase */
+        .section-title { text-align: center; font-size: 2rem; color: var(--gothic-gold); margin-top: 50px; }
+        
+        .video-container {
+            display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 50px 0;
+        }
+        .main-video { width: 80%; max-width: 900px; aspect-ratio: 16/9; border: 1px solid #333; }
+
+        /* The Carousel for Shorts & Reels */
+        .carousel-wrapper { overflow-x: auto; display: flex; gap: 20px; padding: 40px; scroll-snap-type: x mandatory; }
+        .carousel-wrapper::-webkit-scrollbar { height: 5px; }
+        .carousel-wrapper::-webkit-scrollbar-thumb { background: var(--blood-red); }
+        
+        .short-card { 
+            min-width: 315px; height: 560px; scroll-snap-align: center; 
+            border: 1px solid #222; background: #050505; border-radius: 5px;
+        }
+
+        /* Social Links */
+        footer { text-align: center; padding: 80px 20px; background: #050505; border-top: 1px solid #1a0000; }
+        .social-links a { 
+            color: #999; text-decoration: none; margin: 0 20px; font-size: 1.5rem; 
+            transition: 0.3s; font-family: 'Pirata One', cursive;
+        }
+        .social-links a:hover { color: var(--blood-red); text-shadow: 0 0 10px var(--blood-red); }
+    </style>
+</head>
+<body>
+
+    <div id="splash">
+        <button id="enter-btn" onclick="startExperience()">BEGIN THE RITUAL</button>
+    </div>
+
+    <audio id="witch-hunt-audio" loop>
+        <source src="WITCH-HUNT.mp3" type="audio/mpeg">
+    </audio>
+
+    <header>
+        <h1>WITCH-HUNT</h1>
+        <div class="artist-name">APRILLIA</div>
+    </header>
+
+    <div class="section-title">THE VISIONS</div>
+    <div class="video-container">
+        <iframe class="main-video" src="https://www.youtube.com/embed/TFcxtEIKStU" allowfullscreen></iframe>
+        <iframe class="main-video" src="https://www.youtube.com/embed/xM46WkDhAps" allowfullscreen></iframe>
+    </div>
+
+    <div class="section-title">THE POSSESSION</div>
+    <div class="carousel-wrapper">
+        <div class="short-card">
+            <iframe width="100%" height="100%" src="https://www.instagram.com/reel/DUOGuKcEnAv/embed/" frameborder="0"></iframe>
+        </div>
+        </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/aprilia.alis/" target="_blank">INSTAGRAM</a>
+            <a href="https://www.tiktok.com/@aprilia.saps" target="_blank">TIKTOK</a>
+            <a href="https://www.youtube.com/@ApriliaAlis" target="_blank">YOUTUBE</a>
+        </div>
+        <p style="margin-top:30px; font-size: 0.8rem; opacity: 0.5;">© 2026 APRILLIA. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script>
+        function startExperience() {
+            const audio = document.getElementById('witch-hunt-audio');
+            audio.play();
+            document.getElementById('splash').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('splash').style.display = 'none';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
